@@ -16,10 +16,10 @@
         <aspectj.version>1.9.6</aspectj.version>
         <allure-junit4.version>2.17.3</allure-junit4.version>
         <org.jetbrains>23.0.0</org.jetbrains>
-        <org.seleniumhq.selenium>4.1.2</org.seleniumhq.selenium>
         <io.cucumber.java>7.2.3</io.cucumber.java>
         <io.cucumber.junit>7.2.3</io.cucumber.junit>
         <junit>4.13.2</junit>
+        <allure-maven>2.10.0</allure-maven>
     </properties>
 
     <dependencies>
@@ -27,11 +27,6 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit4</artifactId>
             <version>${allure-junit4.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>${org.seleniumhq.selenium}</version>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -50,12 +45,6 @@
             <version>${junit}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>${org.jetbrains}</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -66,7 +55,9 @@
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <testFailureIgnore>false</testFailureIgnore>
-                    <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
                     <properties>
                         <property>
                             <name>listener</name>
@@ -91,9 +82,9 @@
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>2.9</version>
+                <version>${allure-maven}</version>
                 <configuration>
-                    <reportVersion>2.6.0</reportVersion>
+                    <reportVersion>${allure-maven}</reportVersion>
                 </configuration>
             </plugin>
             <plugin>
@@ -106,5 +97,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
